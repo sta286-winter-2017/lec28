@@ -79,7 +79,7 @@
 
 \title{STA286 Lecture 28}
 \author{Neil Montgomery}
-\date{Last edited: 2017-03-29 10:06}
+\date{Last edited: 2017-03-29 11:19}
 
 \begin{document}
 \frame{\titlepage}
@@ -102,7 +102,7 @@ Patented process:
 \item
   Estimator \(\hat\theta = \hat p_1 - \hat p_2 = \ol{X_1} - \ol{X_2}\)
 \item
-  \(\V{\hat p_1 - \hat p_2} = \frac{p_1(1-p_1)}{n_1} + \frac{p_1(1-p_1)}{n_2}\)
+  \(\V{\hat p_1 - \hat p_2} = \frac{p_1(1-p_1)}{n_1} + \frac{p_2(1-p_2)}{n_2}\)
 \item
   Whoops! Don't know \(p_1\) or \(p_2\). So use \(\hat p_1\) and
   \(\hat p_2\) instead. Bam. Done.
@@ -160,7 +160,7 @@ Here's a simulated sequence of 0's and 1's from a Bernoulli\((p)\)
 distribution. I know what \((p)\), but you don't.
 
 \begin{verbatim}
-##  [1] 1 1 0 0 0 1 1 0 0 0
+##  [1] 0 0 1 0 1 1 1 0 0 0
 \end{verbatim}
 
 What value of \(p\) between \(0\) and \(1\) is the \textit{most likely}
@@ -169,7 +169,7 @@ to have produce this sequence of \(4\) 1's and \(6\) 0's?
 \pause The probability of getting this sample exactly is:
 
 \begin{align*}
-& p\cdot p\cdot (1-p)\cdot (1-p)\cdot (1-p)\cdot p\cdot p\cdot (1-p)\cdot (1-p)\cdot (1-p) \\
+& (1-p)\cdot (1-p)\cdot p\cdot (1-p)\cdot p\cdot p\cdot p\cdot (1-p)\cdot (1-p)\cdot (1-p) \\
 &= p^4(1-p)^6
 \end{align*}
 
@@ -259,7 +259,7 @@ likelihood for \(\lambda\) is:
 \(\lambda\): 0.1, 0.25, and 0.5.
 
 \begin{align*}
-L(1) &= 1^3e^{-12} = 6.1442124\times 10^{-6}\\
+L(0.5) &= 0.5^3e^{-12} = 3.0984402\times 10^{-4}\\
 \onslide<3->{L(0.25) &= (0.25)^3e^{-12\cdot 0.25} = 7.7792294\times 10^{-4}}\onslide<5->{\longleftarrow \text{ Highest "likelihood"}}\\
 \onslide<4->{L(0.1) &= (0.1)^3e^{-12\cdot 0.1} = 3.0119421\times 10^{-4}}
 \end{align*}
