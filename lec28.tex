@@ -79,7 +79,7 @@
 
 \title{STA286 Lecture 28}
 \author{Neil Montgomery}
-\date{Last edited: 2017-03-29 11:19}
+\date{Last edited: 2017-03-30 11:41}
 
 \begin{document}
 \frame{\titlepage}
@@ -148,8 +148,12 @@ Then \(g(f(x))\) also has a critical value at \(x_0\), and the sign of
 its second derivative at \(x_0\) is the same as the sign of the second
 derivative of \(f\) at \(x_0\).
 
-\pause We'll use this because we need the fact that \(f(x)\) and
-\(\log(f(x))\) take on maximum values at the same point.
+This can be seen by evaluating the left hand sides at \(x_0\):
+
+\begin{align*}
+(g(f(x)))^{\prime} &= g^{\prime}(f(x))f^{\prime}(x)\\
+(g(f(x)))^{\prime\prime} &= g^{\prime\prime}(f(x))(f^{\prime}(x))^2 + g^{\prime}(f(x))f^{\prime\prime}(x)
+\end{align*}
 
 \end{frame}
 
@@ -160,17 +164,17 @@ Here's a simulated sequence of 0's and 1's from a Bernoulli\((p)\)
 distribution. I know what \((p)\), but you don't.
 
 \begin{verbatim}
-##  [1] 0 0 1 0 1 1 1 0 0 0
+##  [1] 0 0 0 0 0 0 0 1 0 1
 \end{verbatim}
 
 What value of \(p\) between \(0\) and \(1\) is the \textit{most likely}
-to have produce this sequence of \(4\) 1's and \(6\) 0's?
+to have produce this sequence of \(2\) 1's and \(8\) 0's?
 
 \pause The probability of getting this sample exactly is:
 
 \begin{align*}
-& (1-p)\cdot (1-p)\cdot p\cdot (1-p)\cdot p\cdot p\cdot p\cdot (1-p)\cdot (1-p)\cdot (1-p) \\
-&= p^4(1-p)^6
+& (1-p)\cdot (1-p)\cdot (1-p)\cdot (1-p)\cdot (1-p)\cdot (1-p)\cdot (1-p)\cdot p\cdot (1-p)\cdot p \\
+&= p^2(1-p)^8
 \end{align*}
 
 Let's call this function \(L(p)\).
@@ -183,8 +187,8 @@ Let's call this function \(L(p)\).
 \begin{frame}{estimating a proportion, from first principles - II}
 
 \begin{align*}
-0 = \frac{d}{dp}\ell(p) &= \frac{d}{dp}\left(4\log(p) + 6\log(1-p)\right) = \frac{4}{p} - \frac{6}{1-p}\\
-\onslide<2->{\frac{4}{p} &= \frac{6}{1-p} \Longrightarrow p = \frac{4}{10}}
+0 = \frac{d}{dp}\ell(p) &= \frac{d}{dp}\left(2\log(p) + 8\log(1-p)\right) = \frac{2}{p} - \frac{8}{1-p}\\
+\onslide<2->{\frac{2}{p} &= \frac{8}{1-p} \Longrightarrow p = \frac{2}{10}}
 \end{align*}
 
 \pause The second derivative is negative, so this is a maximum.
