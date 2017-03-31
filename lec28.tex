@@ -79,7 +79,7 @@
 
 \title{STA286 Lecture 28}
 \author{Neil Montgomery}
-\date{Last edited: 2017-03-30 11:41}
+\date{Last edited: 2017-03-30 14:30}
 
 \begin{document}
 \frame{\titlepage}
@@ -110,7 +110,7 @@ Patented process:
 
 \pause Formula for 95\% interval:
 
-\[(\hat p_1 - \hat p_2) \pm 1.96\sqrt{\frac{\hat p_1(1-\hat p_1)}{n_1} + \frac{\hat p_1(1- \hat p_1)}{n_2}}\]
+\[(\hat p_1 - \hat p_2) \pm 1.96\sqrt{\frac{\hat p_1(1-\hat p_1)}{n_1} + \frac{\hat p_2(1- \hat p_2)}{n_2}}\]
 
 \end{frame}
 
@@ -129,10 +129,6 @@ distribution.
 
 But the results are well known to be non-robust, even with large sample
 sizes, so I cannot recommend them for use.
-
-\pause A modern computationally-intensive technique called
-\textit{bootstrapping} is a good choice in these and other difficult
-situations.
 
 \end{frame}
 
@@ -164,17 +160,17 @@ Here's a simulated sequence of 0's and 1's from a Bernoulli\((p)\)
 distribution. I know what \((p)\), but you don't.
 
 \begin{verbatim}
-##  [1] 0 0 0 0 0 0 0 1 0 1
+##  [1] 0 1 1 0 0 0 0 0 1 1
 \end{verbatim}
 
 What value of \(p\) between \(0\) and \(1\) is the \textit{most likely}
-to have produce this sequence of \(2\) 1's and \(8\) 0's?
+to have produce this sequence of \(4\) 1's and \(6\) 0's?
 
 \pause The probability of getting this sample exactly is:
 
 \begin{align*}
-& (1-p)\cdot (1-p)\cdot (1-p)\cdot (1-p)\cdot (1-p)\cdot (1-p)\cdot (1-p)\cdot p\cdot (1-p)\cdot p \\
-&= p^2(1-p)^8
+& (1-p)\cdot p\cdot p\cdot (1-p)\cdot (1-p)\cdot (1-p)\cdot (1-p)\cdot (1-p)\cdot p\cdot p \\
+&= p^4(1-p)^6
 \end{align*}
 
 Let's call this function \(L(p)\).
@@ -187,8 +183,8 @@ Let's call this function \(L(p)\).
 \begin{frame}{estimating a proportion, from first principles - II}
 
 \begin{align*}
-0 = \frac{d}{dp}\ell(p) &= \frac{d}{dp}\left(2\log(p) + 8\log(1-p)\right) = \frac{2}{p} - \frac{8}{1-p}\\
-\onslide<2->{\frac{2}{p} &= \frac{8}{1-p} \Longrightarrow p = \frac{2}{10}}
+0 = \frac{d}{dp}\ell(p) &= \frac{d}{dp}\left(4\log(p) + 6\log(1-p)\right) = \frac{4}{p} - \frac{6}{1-p}\\
+\onslide<2->{\frac{4}{p} &= \frac{6}{1-p} \Longrightarrow p = \frac{4}{10}}
 \end{align*}
 
 \pause The second derivative is negative, so this is a maximum.
